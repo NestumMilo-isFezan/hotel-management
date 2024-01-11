@@ -1,0 +1,39 @@
+version: "3.9"
+services:
+  php-apache:
+    container_name: php-apache
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/var/www/html/
+    ports:
+      - 80:80
+
+  maria_db:
+    container_name: bekas-mariadb
+    image: mariadb:11.2
+    restart: always
+    environment:
+      MYSQL_DATABASE: hotelmanagement
+      MYSQL_USER: mangsacoding
+      MYSQL_PASSWORD: developer
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/mariadb:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:5.2
+    container_name: bekas-myadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=maria_db
+      - PMA_PORT=3306
+      - PMA_USER=mangsacoding
+      - PMA_PASSWORD=developer
+    depends_on:
+      - maria_db

@@ -1,0 +1,92 @@
+index ini utk view room
+
+sql = SELECT * FROM hotelservice WHERE hotelID=1
+
+div- content
+    h1- Manage Service
+    
+    div- col-1
+        div- table title
+            h2- Services Available
+            button- Add New Type
+        div- table content
+            table- view data
+
+    div- col-2
+        div- table title
+            h2- Add Services
+        div- table content
+            table- form data (action.php)
+
+untuk action.php
+Kasi insert
+$name = $_POST['name']
+$description = $_POST['description']
+$price = $_POST['price']
+$status = $_POST['status'] (ada 2 option, available/unavailable)
+$hotelID = 1
+
+-> INSERT ON roomtype(name, description, price, status, hotelID)
+VALUES ($name, $description, $price, $status, $hotelID)
+
+if(mysqli_query($conn, $sql)){
+    div- content
+        div- table title
+            h2- Successful
+        div- icon
+            img- src ../../img/success.png
+        div- desc
+            p- Successful Add New Service
+}
+else{
+        div- content
+                div- table title
+                    h2- Unsuccessful
+                div- icon
+                    img- src ../../img/db-error.png
+                div- desc
+                    p- SQL went wrong..
+}
+
+=========================================
+Ini view room table nnti
+
+No | Services Name (name) | Description | Price | Status | Modify (Edit/Delete)(typeID)
+
+=========================================
+jgn lupa
+if(isset($_GET[id].....)){
+$id = $_GET[id]
+// Buat di page edit-news.php
+    div- col-4
+        div- table title
+            h2- Edit Service
+        div- table content
+            table- form data (edit-action.php)
+            hidden - $id
+
+}
+
+untuk edit-action
+buat mcm action.php yg ada .... = $_POST['']
+
+-> UPDATE ON news SET ...... WHERE serviceID=$serviceID AND hotelID=1
+
+if(mysqli_query($conn, $sql)){
+    div- content
+        div- table title
+            h2- Successful
+        div- icon
+            img- src ../../img/success.png
+        div- desc
+            p- Successful Edit Service
+}
+else{
+        div- content
+                div- table title
+                    h2- Unsuccessful
+                div- icon
+                    img- src ../../img/db-error.png
+                div- desc
+                    p- SQL went wrong..
+}

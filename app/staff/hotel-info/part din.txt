@@ -1,0 +1,118 @@
+Buat Title name Manage Hotel
+
+Jadi dia begini.....
+Ini command dia "SELECT hotel.*, news.* FROM hotel LEFT JOIN news ON news.hotelID = hotel.hotelID WHERE hotelID=1"
+
+
+
+div- content
+    h1- Manage Hotel
+
+    div- col-1
+        div- table title
+            h2- Portfolio
+            button- Edit Portfolio (pindah page portfolio.php)
+        div- table content
+            table- view data
+
+    div- col-2
+        div- table title
+            h2- Hotel News
+            button- Add News
+        div- table content
+            table- view data
+
+    div- col-3
+        div- table title
+            h2- Add News
+        div- table content
+            table- form data (action.php)
+
+untuk action.php (news)
+Kasi insert
+$title = $_POST['title']
+$desc = $_POST['desc']
+
+-> INSERT ON news(newstitle, description, hotelID) VALUES ($title, $desc, 1)
+
+if(mysqli_query($conn, $sql)){
+    div- content
+        div- table title
+            h2- Successful
+        div- icon
+            img- src ../../img/success.png
+        div- desc
+            p- Successful Add News
+}
+else{
+        div- content
+                div- table title
+                    h2- Unsuccessful
+                div- icon
+                    img- src ../../img/db-error.png
+                div- desc
+                    p- SQL went wrong..
+}
+
+=========================================
+Ini view utk table Portfolio
+
+Hotel Name |
+Home Info |
+Home Pic |
+About Us |
+Contact |
+Email |
+Address |
+City |
+Postcode |
+State |
+Country |
+
+untuk portfolio.php
+
+$uploadpath = ../../upload/home/
+$img = $_FILES['img']
+$imgpath = $uploadpath . $img['name']
+
+$name = $_POST['hotelname']
+$info = $_POST['info']
+$about = $_POST['about']
+$contact = $_POST['contact']
+$email = $_POST['email']
+$address = $_POST['address']
+$city = $_POST['postcode']
+$state = $_POST['state']
+$country = $_POST['country']
+
+Pastu...
+-> UPDATE ON hotel SET ...... WHERE hotelID=1
+
+
+=========================================
+Ini view utk table news
+
+No | Title | Description | Release Time | Release Date | Modify(Edit/ Delete)
+
+
+=========================================
+jgn lupa
+if(isset($_GET[id].....)){
+$id = $_GET[id]
+// Buat di page edit-news.php
+    div- col-4
+        div- table title
+            h2- Edit News
+        div- table content
+            table- form data (edit-action.php)
+            hidden - $id
+
+}
+
+untuk edit-action
+$title = $_POST['title']
+$desc = $_POST['description']
+$newsID = $_POST['id']
+
+
+-> UPDATE ON news SET newstitle= ...... WHERE newsID=$newsID hotelID=1
