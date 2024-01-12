@@ -1,5 +1,5 @@
 <?php
-require "../template/roompart.php";
+require "../template/adminpart.php";
 
 if(isset($_GET["book"]) && $_GET["book"] != ""){
 
