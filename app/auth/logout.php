@@ -1,6 +1,13 @@
-<?php 
+<?php
 session_start();
-session_destroy();
-header('location:../index.php')
 
+// Unset all session variables
+$_SESSION = array();
+
+// Destroy the session
+session_destroy();
+
+// Redirect to the landing page after logout
+header("location:../index.php");
+exit();
 ?>
