@@ -1,8 +1,9 @@
 <?php 
 // Prepare To Fetch Data
 session_start();
-$hotelID = 0;
-include "../config/config.php";
+$hotelID = $_SESSION['hotelID'];
+$uploadpath = "../../upload/";
+include "../../config/config.php";
 
 
 $_SESSION['userID']=1;
@@ -22,12 +23,12 @@ if(isset($_SESSION['userID'], $_SESSION['userRoles'])){
 
         // Fetch Hotel Data
         $hoteldata = fetchOne("SELECT * FROM hotel WHERE hotelID=$hotelID");
-        $hotelicon = "../upload/home/home_icon.png";
+        $hotelicon = $uploadpath."home/home_icon.png";
 
         $hotelname = $hoteldata['hotelname'];
         $info = $hoteldata['info'];
         $about= $hoteldata['about'];
-        $img_path = "../upload/home/".$hoteldata['img_path'];
+        $hotelimg = "../../upload/home/".$hoteldata['img_path'];
     
         $contact = $hoteldata['contact'];
         $email = $hoteldata['email'];
