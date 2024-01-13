@@ -47,7 +47,7 @@ require "../template/adminpart.php";
                             <th width="15%">Room No.</th>
                             <th width="15">Check In Date</th>
                             <th width="15%">Check Out Date</th>
-                            <th width="15%">Modify</th>
+                            <th width="15%">Action</th>
                         </tr>
                         <?php
                         $sql = "SELECT booking.*, room.*, guest.* FROM booking
@@ -68,8 +68,7 @@ require "../template/adminpart.php";
                                 echo "<tr>";
                                 echo "<td>" . $numrow . "</td><td>" . $row["firstName"] . " " . $row["lastName"] . "</td><td>" . $row["roomID"] . "</td><td>" . $row["check_in"] .
                                     "</td><td>" . $row["check_out"] . "</td>";
-                                echo '<td> <a href="checkout.php?id=' . $row["bookID"] . '">Check-Out</a>&nbsp;|&nbsp;';
-                                echo '<a href="cancel.php?id=' . $row["bookID"] . '">Cancel</a> </td>';
+                                echo '<td> <a href="checkout.php?book=' . $row["bookID"] . '">Check-Out</a> </td>';
                                 echo "</tr>" . "\n\t\t";
                                 $numrow++;
                             }
@@ -94,7 +93,7 @@ require "../template/adminpart.php";
                             <th width="15%">Room No.</th>
                             <th width="15">Check In Date</th>
                             <th width="15%">Check Out Date</th>
-                            <th width="15%">Status</th>
+                            <th width="15%">Action</th>
                         </tr>
                         <?php
                         $sql = "SELECT booking.*, room.*, guest.* FROM booking
@@ -115,7 +114,8 @@ require "../template/adminpart.php";
                             while ($row = mysqli_fetch_assoc($result)) {
                                 echo "<tr>";
                                 echo "<td>" . $numrow . "</td><td>" . $row["firstName"] . " " . $row["lastName"] . "</td><td>" . $row["roomNo"] . "</td><td>" . $row["check_in"] .
-                                    "</td><td>" . $row["check_out"] . "</td><td>" . $updated_status . "</td>";
+                                    "</td><td>" . $row["check_out"] . "</td>";
+                                echo '<td> <a href="delete.php?book=' . $row["bookID"] . '">Delete</a> </td>';
                                 echo "</tr>" . "\n\t\t";
                                 $numrow++;
                             }
