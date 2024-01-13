@@ -64,8 +64,8 @@ require "../template/adminpart.php";
                             echo "<tr>";
                             echo "<td>" . $numrow . "</td><td>" . $row["firstName"] . " " . $row["lastName"] . "</td><td>" . $row["roomNo"] . "</td><td>" . $row["check_in"] .
                                 "</td><td>" . $row["check_out"] . "</td>";
-                            echo '<td> <a href="checkin.php?id=' . $row["bookID"] . '">Check-In</a>&nbsp;|&nbsp;';
-                            echo '<a href="cancel.php?id=' . $row["bookID"] . '">Cancel</a> </td>';
+                            echo '<td> <a href="checkin.php?book=' . $row["bookID"] . '">Check-In</a>&nbsp;|&nbsp;';
+                            echo '<a href="cancel.php?book=' . $row["bookID"] . '">Cancel</a> </td>';
                             echo "</tr>" . "\n\t\t";
                             $numrow++;
                         }

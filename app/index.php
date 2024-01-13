@@ -23,7 +23,7 @@ require "template/homepart.php";
     <!-- End Navbar -->
 
     <!-- Hero Section -->
-    <section class="text-center vh-100" style="background-image: url('<?= $hotelimg?>'); background-size:cover; background-repeat: no-repeat;">
+    <section id="home" class="text-center vh-100" style="background-image: url('<?= $hotelimg?>'); background-size:cover; background-repeat: no-repeat;">
       <div class="px-2 pt-2 w-100 y-100 h-100 d-flex" style="background: rgb(32,32,39); background: linear-gradient(90deg, rgba(32,32,39,0.3) 0%, rgba(53,53,78, 0.3) 28%, rgba(94,94,108, 0.3) 70%, rgba(111,106,106, 0.3) 100%); backdrop-filter: blur(5px);">
         <div class="px-2 pt-2 pt-sm-3 m-auto" style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);">
           <div>
@@ -35,7 +35,7 @@ require "template/homepart.php";
     </section>
 
     <!-- Hotel News -->
-    <section class="h-100" style="min-height: 80vh;">
+    <section id="news" class="h-100" style="min-height: 80vh;">
       <div class="album py-2 pb-3 h-100 bg-dark"">
       
         <div class="mt-2 mb-4 pt-1 px-3 text-center">

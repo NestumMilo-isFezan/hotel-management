@@ -2,8 +2,8 @@
 require "../template/adminpart.php";
 
 if(isset($_GET["book"]) && $_GET["book"] != ""){
-
-    $sql = "DELETE FROM booking WHERE bookID=" . $_GET['book'];
+    $bookid = $_GET['book'];
+    $sql = "DELETE FROM booking WHERE bookID=$bookid";
 
     if(mysqli_query($conn, $sql)){
         echo '<div class = "content">

@@ -33,11 +33,9 @@ include("../config/config.php");
         $pwdHash = trim(password_hash($_POST['password'], PASSWORD_DEFAULT)); 
         //echo $pwdHash;
 		$sql = "INSERT INTO useracc (username, email, password ) VALUES ('$username','$email', '$pwdHash')";
-        
-
-        
+        }
     }
         mysqli_close($conn);
 
-        ?>
+?>
 </body>
