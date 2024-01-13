@@ -5,7 +5,6 @@ include("../../config/config.php");
 
 <head>
 
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
 
 </head>
@@ -66,19 +65,7 @@ include("../../config/config.php");
         <p>Required field with mark*</p>
 
         <form method="POST" action="roomtype_action.php" enctype="multipart/form-data">
-            <table border="3">
-                <tr>
-                    <td>Semester*</td>
-                    <td width="1px">:</td>
-                    <td>
-                        <select size="1" name="typeID" required>                        
-                            <option value="">&nbsp;</option>
-                            <option value="1">Basic single</option>;                           
-                            <option value="2">Premium single</option>;
-                            <option value="3">Family room</option>;                        
-                        </select>
-                    </td>
-                </tr>
+            <table border="3"> 
                 <tr>
                     <td>Name*</td>
                     <td>:</td>
@@ -94,17 +81,17 @@ include("../../config/config.php");
                     </td>
                 </tr>
                 <tr>
-                    <td>Price(RM)*</td>
+                    <td>Price (RM)*</td>
                     <td>:</td>
                     <td>
                         <input type="number" name="price" step="0.01" required>                                    
                     </td>
                 </tr>
                 <tr>
-                    <td>Capasity*</td>
+                    <td>Capacity*</td>
                     <td>:</td>
                     <td>
-                        <input type="number" name="capasity" step="1" required>                                    
+                        <input type="number" name="capacity" required>                                    
                     </td>
                 </tr>
                 <tr>
