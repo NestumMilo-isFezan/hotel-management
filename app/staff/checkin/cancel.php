@@ -16,7 +16,12 @@ if(isset($_GET["book"]) && $_GET["book"] != ""){
                     </div>
                 </div>
             </div>
-        </div>';
+        </div>
+        <script>
+            setTimeout(function() {
+                window.location.href = "index.php";
+            }, 4000);
+          </script>';
     }
     else{
         echo '<div class = "content">
@@ -29,7 +34,12 @@ if(isset($_GET["book"]) && $_GET["book"] != ""){
                     </div>
                 </div>
             </div>
-        </div>';
+        </div>
+        <script>
+            setTimeout(function() {
+                window.location.href = "index.php";
+            }, 4000);
+          </script>';
     }
 }
 
