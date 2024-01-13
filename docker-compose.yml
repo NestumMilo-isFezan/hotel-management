@@ -12,7 +12,7 @@ services:
 
   maria_db:
     container_name: bekas-mariadb
-    image: mariadb:11.2
+    image: mariadb:latest
     restart: always
     environment:
       MYSQL_DATABASE: hotelmanagement
