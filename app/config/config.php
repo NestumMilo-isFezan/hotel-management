@@ -32,6 +32,7 @@ function fetchOne($sql){
   }
   else{
     $rows = null;
+
   }
   
   // Return or Pass Data

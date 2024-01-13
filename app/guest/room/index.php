@@ -37,7 +37,7 @@
     <?php
       // Configuration Pagination //
       $data_inpage = 6;
-      $totaldata = count(fetchAll("SELECT * FROM room"));
+      $totaldata = count(fetchAll("SELECT * FROM room WHERE hotelID=$hotelID"));
       $totalpage = ceil($totaldata/$data_inpage);
       $activepage = (isset($_GET["page"])) ? $_GET["page"] : 1;
       $initialdata = ($data_inpage * $activepage) - $data_inpage;

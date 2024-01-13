@@ -61,8 +61,6 @@ include("../../config/config.php");
     </div>
 
     <div style="padding:0 10px;">
-        <h3>Add Challenge and Plan</h3>
-        <p>Required field with mark*</p>
 
         <form method="POST" action="roomtype_action.php" enctype="multipart/form-data">
             <table border="3"> 
