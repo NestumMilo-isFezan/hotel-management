@@ -1,6 +1,5 @@
 <?php
-session_start();
-include('config.php');
+require "../template/adminpart.php";
 
 if(isset($_GET["book"]) && $_GET["book"] != ""){
 
