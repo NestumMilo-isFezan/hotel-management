@@ -16,9 +16,9 @@ require "../template/adminpart.php";
     </head>
 
     <body data-bs-theme="dark">
-        <div class="row vw-100">
+        <div class="row row-cols-2 vw-100">
             <!-- Side Menu -->
-            <div class="col-1 col-sm-2 col-md-3 w-100 d-flex">
+            <div class="col-1 col-sm-2 col-md-3 d-flex">
                 <div class="d-flex flex-column flex-shrink-0 p-3 bg-dark-subtle vh-100">
                     <a href="./index.php" class="d-flex align-items-center mb-0 mb-md-3 me-md-auto text-white text-decoration-none">
                         <img src="<?= $hotelicon?>" alt="<?= $hotelname?>" width="33" height="33" class="me-sm-2">
@@ -90,69 +90,67 @@ require "../template/adminpart.php";
                         </ul>
                     </div>
                 </div>
-</div>
+            </div>
         
 
-        <div class = "content">
-            <br>
-            <!-- Header -->
-            <section class="text-center mh-50" style="background-image: url('<?= $hotelimg?>'); background-size:cover; background-repeat: no-repeat;">
-            <div class="px-2 pt-2 w-100 y-100 h-100 d-flex" style="background: rgb(32,32,39); background: linear-gradient(90deg, rgba(32,32,39,0.3) 0%, rgba(53,53,78, 0.3) 28%, rgba(94,94,108, 0.3) 70%, rgba(111,106,106, 0.3) 100%); backdrop-filter: blur(5px);">
-                <div class="px-2 pt-2 pt-sm-3 m-auto" style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);">
-                    <div>
-                        <h1 class="display-5" style="font-family: 'Staatliches';"><?= $hotelname?><br><span class="display-2" style="color:#22092C;">Manage Check-In</span></h1>
+            <div class = "col-9">
+            <div class = "container w-100 m-3 d-grid">
+                <!-- Header -->
+                <div class="text-center mh-50 mb-3" style="background-image: url('<?= $hotelimg?>'); background-size:cover; background-repeat: no-repeat;">
+                    <div class="px-2 pt-2 w-100 y-100 h-100 d-flex" style="background: rgb(32,32,39); background: linear-gradient(90deg, rgba(32,32,39,0.3) 0%, rgba(53,53,78, 0.3) 28%, rgba(94,94,108, 0.3) 70%, rgba(111,106,106, 0.3) 100%); backdrop-filter: blur(5px);">
+                        <div class="px-2 pt-2 pt-sm-3 m-auto" style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);">
+                            <div>
+                                <h1 class="display-5" style="font-family: 'Staatliches';"><?= $hotelname?><br><span class="display-2" style="color:#22092C;">Manage Check-In</span></h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            </section>
-            <div class = "table-content mx-3">
-                <table class = "table table-bordered table-hover" width="100%">
-                    <tr>
-                        <th width="5%">No</th>
-                        <th width="35%">Guest Name</th>
-                        <th width="15%">Room No.</th>
-                        <th width="15">Check In Date</th>
-                        <th width="15%">Check Out Date</th>
-                        <th width="15%">Modify</th>
-                    </tr>
-                    <?php
-                    $sql = "SELECT booking.*, room.*, guest.* FROM booking
-                    JOIN room ON booking.roomID = room.roomID
-                    JOIN guest ON booking.guestID = guest.guestID
-                    WHERE booking.status = 'confirmed'";
 
-                    $result = mysqli_query($conn, $sql);
-                    
-                    if (!$result) {
-                        die('Query failed: ' . mysqli_error($conn));
-                    }
+                <div class = "table-content mx-3">
+                    <table class = "table table-bordered table-hover" width="100%">
+                        <tr>
+                            <th width="5%">No</th>
+                            <th width="35%">Guest Name</th>
+                            <th width="15%">Room No.</th>
+                            <th width="15">Check In Date</th>
+                            <th width="15%">Check Out Date</th>
+                            <th width="15%">Modify</th>
+                        </tr>
+                        <?php
+                        $sql = "SELECT booking.*, room.*, guest.* FROM booking
+                        JOIN room ON booking.roomID = room.roomID
+                        JOIN guest ON booking.guestID = guest.guestID
+                        WHERE booking.status = 'confirmed'";
 
-                    if (mysqli_num_rows($result) > 0) {
-                        // output data of each row
-                        $numrow = 1;
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td>" . $numrow . "</td><td>" . $row["firstName"] . " " . $row["lastName"] . "</td><td>" . $row["roomNo"] . "</td><td>" . $row["check_in"] .
-                                "</td><td>" . $row["check_out"] . "</td>";
-                            echo '<td> <a href="checkin.php?book=' . $row["bookID"] . '">Check-In</a>&nbsp;|&nbsp;';
-                            echo '<a href="cancel.php?book=' . $row["bookID"] . '">Cancel</a> </td>';
-                            echo "</tr>" . "\n\t\t";
-                            $numrow++;
+                        $result = mysqli_query($conn, $sql);
+                        
+                        if (!$result) {
+                            die('Query failed: ' . mysqli_error($conn));
                         }
-                    } 
-                    else {
-                        echo '<tr><td colspan="7">No results ! :(</td></tr>';
-                    }
-                    mysqli_close($conn);
-                    ?>
-                </table>
+
+                        if (mysqli_num_rows($result) > 0) {
+                            // output data of each row
+                            $numrow = 1;
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+                                echo "<td>" . $numrow . "</td><td>" . $row["firstName"] . " " . $row["lastName"] . "</td><td>" . $row["roomNo"] . "</td><td>" . $row["check_in"] .
+                                    "</td><td>" . $row["check_out"] . "</td>";
+                                echo '<td> <a href="checkin.php?book=' . $row["bookID"] . '">Check-In</a>&nbsp;|&nbsp;';
+                                echo '<a href="cancel.php?book=' . $row["bookID"] . '">Cancel</a> </td>';
+                                echo "</tr>" . "\n\t\t";
+                                $numrow++;
+                            }
+                        } 
+                        else {
+                            echo '<tr><td colspan="7">No results ! :(</td></tr>';
+                        }
+                        mysqli_close($conn);
+                        ?>
+                    </table>
+                </div>
+            </div>
             </div>
         </div>
-                </div>
-            <!-- Footer -->
-        <?php 
-        require_once('../template/footer.php');
-        ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     </body>
