@@ -24,5 +24,17 @@ _> "Kalau dia guest, pergi ke '../index.php'"
 3. Add Staff
 -> Buat Form untuk memenuhi data yang dperlukan untuk table useracc dan staff
 
+div-content
+      form-
+            div-1
+                  register punya part
+                  
+            div-2
+                  staff punya part
+            div-3
+                  button
+      /form
+/div
+
 4. Logout,
 -> Ini unset session pastu session abort

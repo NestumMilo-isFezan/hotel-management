@@ -15,10 +15,11 @@ include("../config/config.php");
                 <div class="login-container">
                     <form action="login-action.php" method="post">
                         <label for="name">Username:</label>
-                        <input type="text" id="username" name="uname" required><br><br>
+                        <input type="text" id="username" name="email" required><br><br>
                         <label for="psw">Password:</label>
-                        <input type="password" id="password" name="psw" required><br><br>
-                        <input type="button" value="Login">
+                        <input type="password" id="password" name="password" required><br><br>
+
+                        <input type="submit" value="Login">
                         <input type="button" value="Cancel"><br><br>
                         Don't have an account yet?<a href="register.php">Create one.</a>
                     </form>

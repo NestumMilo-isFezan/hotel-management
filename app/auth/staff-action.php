@@ -16,6 +16,9 @@ include("../config/config.php");
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
         $confirmPwd = mysqli_real_escape_string($conn, $_POST['confirmPwd']);
+        $firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
+        $lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
+        $contact = mysqli_real_escape_string($conn, $_POST['contact']);
 
           //Validate pwd and confrimPwd
         if ($password !== $confirmPwd) {
@@ -32,35 +35,19 @@ include("../config/config.php");
         // User does not exist, insert new user record, hash the password		
         $pwdHash = trim(password_hash($_POST['password'], PASSWORD_DEFAULT)); 
         //echo $pwdHash;
-		$sql = "INSERT INTO useracc (username, email, password ) VALUES ('$username','$email', '$pwdHash')";
+		$sql = "INSERT INTO useracc (userRoles, username, email, password ) VALUES (1, '$username','$email', '$pwdHash')";
         $insertOK=0;
         }
 
         if (mysqli_query($conn, $sql)) {
-            echo "<p>New user record created successfully.</p> 
+            echo "<p>New staff record created successfully.</p> 
             <script>
             setTimeout(function() {
-                window.location.href = 'login.php';}, 4000); </script>";
-                $insertOK=1;
+                window.location.href = '../staff/index.php';}, 4000); </script>";   
    
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-
-        if($insertOK==1){
-            $lastInsertedId = mysqli_insert_id($conn);
-            $sql = "INSERT INTO guest (accID, address, postcode, city, state, country, firstName, lastName ) 
-            VALUES ('$lastInsertedId', '', '','','','','','')";
-            if(mysqli_query($conn, $sql)){
-                echo "Please Wait...";
-            }
-            else{
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-            }
-   
-        }
-        
-        
+        }        
      
     }
         mysqli_close($conn);

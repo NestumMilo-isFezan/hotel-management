@@ -13,21 +13,22 @@ include("../config/config.php");
         <div id="container">
             <h2>Registration </h2>
                 <div class="register-container">
-            <form action="register_action.php" method="post" >
+            <form action="register-action.php" method="post" >
                 <label for="name">Username</label>
-                <input type="text" name="uname" id="username" required>
+                <input type="text" name="username" id="username" required>
 
                 <label for="userEmail"><br>Email:</label>
-                <input type="email" id="email" name="userEmail" required><br><br>
+                <input type="email" id="email" name="email" required><br><br>
 
                 <label for="userPwd">Password:</label>
-                <input type="password" id="password" name="userPwd" required maxlength="8"><br><br>
+                <input type="password" id="password" name="password" required maxlength="8"><br><br>
 
                 <label for="userPwd">Confirm Password:</label>
                 <input type="password" id="confirmPwd" name="confirmPwd" required><br><br>
 
-                <input type="button" value="Register">
+                <input type="submit" value="Register">
                 <input type="button" value="Cancel">
+                
             </form>
                 </div>
             
