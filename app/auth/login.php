@@ -14,8 +14,8 @@ include("../config/config.php");
             <h2>Login Page </h2>
                 <div class="login-container">
                     <form action="login-action.php" method="post">
-                        <label for="name">Username:</label>
-                        <input type="text" id="username" name="email" required><br><br>
+                        <label for="name">Email:</label>
+                        <input type="text" id="email" name="email" required><br><br>
                         <label for="psw">Password:</label>
                         <input type="password" id="password" name="password" required><br><br>
 
