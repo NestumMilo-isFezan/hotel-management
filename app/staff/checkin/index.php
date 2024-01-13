@@ -91,7 +91,6 @@ require "../template/adminpart.php";
                     </div>
                 </div>
             </div>
-        
 
             <div class = "col-9">
             <div class = "container w-100 m-3 d-grid">
