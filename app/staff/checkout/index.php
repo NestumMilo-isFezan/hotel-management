@@ -114,7 +114,7 @@ require "../template/adminpart.php";
                             $updated_status = 'checked-out';
                             while ($row = mysqli_fetch_assoc($result)) {
                                 echo "<tr>";
-                                echo "<td>" . $numrow . "</td><td>" . $row["firstName"] . " " . $row["lastName"] . "</td><td>" . $row["roomID"] . "</td><td>" . $row["check_in"] .
+                                echo "<td>" . $numrow . "</td><td>" . $row["firstName"] . " " . $row["lastName"] . "</td><td>" . $row["roomNo"] . "</td><td>" . $row["check_in"] .
                                     "</td><td>" . $row["check_out"] . "</td><td>" . $updated_status . "</td>";
                                 echo "</tr>" . "\n\t\t";
                                 $numrow++;
