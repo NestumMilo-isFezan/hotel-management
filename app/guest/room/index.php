@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to the <?= $hotelname?></title>
+    <title>List Rooms</title>
     <link href="" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Staatliches" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
@@ -71,7 +71,7 @@
                     </div>
                     <div class="mb-5 d-flex justify-content-between mx-3">
                         <h3>RM&nbsp;<?= $card['price']?></h3>
-                        <button class="btn btn-primary">Book Now</button>
+                        <button class="btn btn-primary" onclick="javascript:location.href='../book/index.php?room=<?= $card['roomID']?>'">Book Now</button>
                     </div>
                 </div>
             </div>

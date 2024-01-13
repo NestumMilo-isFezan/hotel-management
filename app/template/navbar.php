@@ -1,3 +1,10 @@
+<?php 
+    // Directory
+    $homedir = "index.php";
+    $newsdir = "index.php#news";
+    $contactdir = "index.php#contact";
+?>
+
 <nav class="navbar navbar-expand-lg bg-dark shadow-lg" data-bs-theme="dark">
     <div class="container">
         <a class="navbar-brand fw-bold" href="#">
@@ -11,13 +18,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto text-center pt-1">
             <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="<?= $homedir?>">Home</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">News</a>
+            <a class="nav-link" href="<?= $newsdir?>">News</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="<?= $contactdir?>">Contact</a>
             </li>
             <li class="nav-item d-grid pb-2 px-1">
             <button class="btn btn-outline-success" type="button">Log In</button>
