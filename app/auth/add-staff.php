@@ -44,7 +44,7 @@ include("../config/config.php");
                 <input type="text" id="lastName" name="lastName" required><br><br>
 
                 <label for="contact">Contact:</label>
-                <input type="text" id="contact" name="contact" required maxlength="8"><br><br>
+                <input type="text" id="contact" name="contact" required maxlength="10"><br><br>
 
                 
 

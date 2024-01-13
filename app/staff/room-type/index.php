@@ -20,11 +20,11 @@ include("../../config/config.php");
     <div>
     <table border="1" width="100%">
         <tr>
-            <th width="10%">TypeID</th>
-            <th width="15%">Name</th>
-            <th width="30%">Description</th>
-            <th width="20%">Price(RM)</th>
-            <th width="15%">Capacity</th>
+            <th width="5%">TypeID</th>
+            <th width="20%">Name</th>
+            <th width="35%">Description</th>
+            <th width="15%">Price(RM)</th>
+            <th width="5%">Capacity</th>
             <th width="10%">Room_imgpath</th>
             <th width="10%">Action</th>
         </tr>
