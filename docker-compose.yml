@@ -19,10 +19,11 @@ services:
       MYSQL_USER: mangsacoding
       MYSQL_PASSWORD: developer
       MYSQL_ROOT_PASSWORD: root
-    ports:
-      - "3306:3306"
+    expose:
+      - 3306
     volumes:
-      - ./db/mariadb:/var/lib/mysql
+      - data:/var/lib/mysql
+      - ./backup:/docker-entrypoint-initdb.d/database.sql.gz
 
   phpmyadmin:
     image: phpmyadmin:5.2
@@ -37,3 +38,26 @@ services:
       - PMA_PASSWORD=developer
     depends_on:
       - maria_db
+
+  cron-backup:
+    container_name: backup-sql
+    image: fradelg/mysql-cron-backup
+    depends_on:
+      - maria_db
+    volumes:
+      - ./backup:/backup
+    environment:
+      - MYSQL_HOST=maria_db
+      - MYSQL_USER=root
+      - MYSQL_PASS=root
+      - MAX_BACKUPS=15
+      - INIT_RESTORE_LATEST=1
+      - EXIT_BACKUP=1
+      # Every day at 03:00
+      - CRON_TIME=0 3 * * *
+      # Make it small
+      - GZIP_LEVEL=9
+    restart: unless-stopped
+
+volumes:
+  data:
