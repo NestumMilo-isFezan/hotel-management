@@ -5,7 +5,7 @@ include("../../config/config.php");
 //variables
 $hotelID="";
 $action="";
-$id="";
+$newsID="";
 $newstitle = "";
 $article = "";
 $descriptiom =" ";
@@ -16,17 +16,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //values for add or edit
     $hotelID = 1;
+    $newsID = $_POST["nid"];
     $newstitle = $_POST["newstitle"];
     $article = $_POST["article"];
     $descriptiom = trim($_POST["descriptiom"]);
     $remark = trim($_POST["remark"]);
-    
-    $sql = "INSERT INTO news (hotelID, newstitle, article, descriptiom, remark)
-    VALUES (" . $hotelID . ", '" . $newstitle . "', '" . $article . "', '" . $descriptiom . "', '" . $remark . "')";
+
+$sql="UPDATE news SET newstitle= '$newstitle', article ='$article', descriptiom = '$descriptiom', 
+remark = '$remark' WHERE newsID = $newsID AND hotelID = '$hotelID'";
         
-$status = insertTo_DBTable($conn, $sql);
-    
-if ($status) {
+$status = update_DBTable($conn, $sql);
+    if ($status) {
         echo "Form data saved successfully!<br>";
         echo '<a href="index.php">Back</a>';
 } 
@@ -35,11 +35,6 @@ else {
      }
 
 }
-
-
-
-
-
 
 
 //close db connection
