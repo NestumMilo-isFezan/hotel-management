@@ -56,35 +56,19 @@ $(document).ready(function () {
     });
   });
 
-  $("#submitit").click(function (e) {
+  $("#bookform").submit(function (e) {
     e.preventDefault();
-
-    const roomID = $('input[name="roomID"]').val();
-    const guestID = $('input[name="guestID"]').val();
-    const services = $("#services").find(":selected").val();
-    const checkin = $("#checkin").val();
-    const checkout = $("#checkout").val();
-    const totalprice = $("#totalprice").val();
 
     $.ajax({
       url: "book.php",
-      type: "post",
-      data: {
-        roomID: roomID,
-        guestID: guestID,
-        services: services,
-        checkin: checkin,
-        checkout: checkout,
-        totalprice: totalprice,
-      },
-      success: function (response) {
-        // handle success
+      type: "POST",
+      data: $(this).serialize(),
+    })
+      .done(function (data) {
         alert("Success");
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        // handle error
-        alert("Error");
-      },
-    });
+      })
+      .fail(function () {
+        alert("Fail");
+      });
   });
 });

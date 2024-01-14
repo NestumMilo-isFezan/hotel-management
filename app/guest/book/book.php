@@ -12,7 +12,7 @@ include(CONFIG_DIR."/config.php");
         $checkout = date('Y-m-d H:i:s', $checkout);
         $totalprice = $_POST['totalprice'];
 
-        $sql = "INSERT INTO booking(roomID, guestID, serviceID, checkin, checkout, totalprice, status)
+        $sql = "INSERT INTO booking(roomID, guestID, serviceID, check_in, check_out, total_price, status)
         VALUES($roomID, $guestID, $services, '$checkin', '$checkout', $totalprice, 'available')";
 
         mysqli_query($conn, $sql);
