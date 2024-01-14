@@ -18,11 +18,11 @@ $imageFileType = "";
 $uploadfileName = "";
 
 //this block is called when button Submit is clicked
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //values for add or edit
     $name = $_POST["name"];
     $description = $_POST["description"];
-    $price = $_POST["price"];
+    $price = trim($_POST["price"]);
     $capacity = ($_POST["capacity"]);
     
     
