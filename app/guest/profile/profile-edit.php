@@ -6,24 +6,26 @@ include("../config/config.php");
 <!DOCTYPE html>
 <html>
     <body>
-        <?php
-			//ini query untuk send action post senang cerita untuk view profile laa
-			$sql = ' SELECT guest.*, useracc.*
-                     FROM guest
-                     JOIN useracc ON guest.accID = useracc.accID
-                     WHERE guest.guestID = '$guestID'';
-			$guestdata = fetchOne($sql);
-			
-			if ($guestdata!= null) {
-				$guestID = $guestdata['guestID'];
-                $accountID = $guestdata['accID'];
-                $birthdate = $guestdata['birthdate'];
-                $address =  $guestdata['address'];
-                $postcode = $guestdata['postcode'];
-                $city = $guestdata['city'];
-                $state = $guestdata['state'];
-                $country = $guestdata['country'];
-			}
+    <?php
+            if($_SESSION['guestID']){
+                $guestID = $_SESSION['guestID'];
+                $sql = "SELECT guest.*, useracc.* FROM guest
+                JOIN useracc ON guest.accID = useracc.accID
+                WHERE guest.guestID = '$guestID";
+
+                $guestdata = fetchOne($sql);
+                            
+                if ($guestdata!= null) {
+                    $guestID = $guestdata['guestID'];
+                    $accountID = $guestdata['accID'];
+                    $birthdate = $guestdata['birthdate'];
+                    $address =  $guestdata['address'];
+                    $postcode = $guestdata['postcode'];
+                    $city = $guestdata['city'];
+                    $state = $guestdata['state'];
+                    $country = $guestdata['country'];
+                }
+            }
 		?>
         <!--header edit profile-->
         <div>
