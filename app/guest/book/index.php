@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>List Rooms</title>
+    <title>Booking</title>
     <link href="" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Staatliches" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
@@ -22,113 +22,70 @@
     ?>
     <!-- End Navbar -->
 
-    <!-- Header -->
-    <section class="text-center mh-50" style="background-image: url('<?= $hotelimg?>'); background-size:cover; background-repeat: no-repeat;">
-      <div class="px-2 pt-2 w-100 y-100 h-100 d-flex" style="background: rgb(32,32,39); background: linear-gradient(90deg, rgba(32,32,39,0.3) 0%, rgba(53,53,78, 0.3) 28%, rgba(94,94,108, 0.3) 70%, rgba(111,106,106, 0.3) 100%); backdrop-filter: blur(5px);">
-        <div class="px-2 pt-2 pt-sm-3 m-auto" style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);">
-          <div>
-            <h1 class="display-5" style="font-family: 'Staatliches';"><?= $hotelname?><br><span class="display-2" style="color:#22092C;">Room Catalogue</span></h1>
+    <!-- Room List -->
+    <section class="h-100" style="min-height: 100vh;">
+      <div class="container py-3 py-sm-2">
+        <form class="row row-cols-1 g-4 pb-4">
+          
+          <div class="col">
+              <div class="card h-100" style="min-height: 80vh;">
+                  <img src="<?= $roomimg?>" class="card-img-top object-fit-cover" style="height: 35vh;" alt="...">
+                  <div class="card-body">
+                      <h2 class="card-title fw-bold" style="font-family: 'Poppins';">No : <?= $roomNo?> - <?= $roomname?></h5>
+                      <p class="card-text"><?= $roomdesc?></p>
+                      <p class="badge bg-warning text-dark">For <?= $capacity?> people</p>
+                      
+                      <form class="row g-3">
+                        <div class="col-12 input-group mb-3">
+                          <label for="services" class="input-group-text" style="width:100px;">Service</label>
+                          <select class="form-select" aria-label="Default select example" name="services" id="services" required>
+                            <option selected>Select the service you want to enjoy</option>
+                            <?php
+                              $servicedata = fetchAll("SELECT * FROM hotelservice WHERE hotelID=$hotelID");
+                              if($servicedata){
+                                foreach ($servicedata as $selections){
+                                  $typeID = $selections['typeID'];
+                                  $serviceName = $selections['name'];
+                                  $serviceprice = $selections['price'];
+                                  ?>
+                                  <option value="<?= $typeID?>"><?= $serviceName?> - RM <?= $serviceprice?></option>
+                            <?php
+                                }
+                              }
+                            ?>
+                          </select>
+                        </div>
+                        <div class="col-md-6 input-group mb-3">
+                          <label for="checkin" class="input-group-text" style="width:100px;">Check In</label>
+                          <input type="date" class="form-control" name="checkin" id="checkin" placeholder="Select check-in date" required>
+                        </div>
+                        <div class="col-md-6 input-group mb-3">
+                          <label for="checkout" class="input-group-text" style="width:100px;">Check Out</label>
+                          <input type="date" class="form-control" name="checkout" id="checkout" placeholder="Select check-out date" required>
+                        </div>
+                      </form>
+                  </div>
+                  <div class="mb-5 d-flex justify-content-between mx-3">
+                      <input type="hidden" id="price" value="<?= $roomprice?>">
+                      <input type="hidden" id="totalprice" value="<?= $roomprice?>">
+                      <h3>RM&nbsp;<span  id="estprice">0.00</span></h3>
+                      <button class="btn btn-primary btn-lg" onclick="javascript:location.href='../book/action.php'">Book This Now</button>
+                  </div>
+              </div>
           </div>
-        </div>
+
+    </form>
       </div>
     </section>
 
-    <!-- Room List -->
-    <?php
-      // Configuration Pagination //
-      $data_inpage = 6;
-      $totaldata = count(fetchAll("SELECT * FROM room"));
-      $totalpage = ceil($totaldata/$data_inpage);
-      $activepage = (isset($_GET["page"])) ? $_GET["page"] : 1;
-      $initialdata = ($data_inpage * $activepage) - $data_inpage;
-
-      $roomdata = fetchAll("SELECT room.*, roomtype.*
-                            FROM room JOIN roomtype
-                            ON room.typeID=roomtype.typeID
-                            WHERE room.hotelID=$hotelID
-                            LIMIT $initialdata, $data_inpage");
-    ?>
-    <section class="h-100" style="min-height: 80vh;">
-      <div class="container py-2 py-sm-5">
-        <div class="row row-cols-1 row-cols-md-3 g-4 py-5">
-
-        <?php
-        if($roomdata){
-          foreach ($roomdata as $card){
-            $roomimg = $uploadpath . "roomtype/" . $card['room_imgpath'];
-
-            if(!file_exists($roomimg) || $card['room_imgpath']=="") { 
-              $roomimg = $uploadpath . "roomtype/default.jpg";
-            }
-        ?>
-            <div class="col">
-                <div class="card h-100" style="min-height: 400px;">
-                    <img src="<?= $roomimg?>" class="card-img-top object-fit-cover" style="height: 200px;" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Room No :&nbsp;<?= $card['roomNo']?></h5>
-                        <p class="card-text"><?= $card['description']?></p>
-
-                    </div>
-                    <div class="mb-5 d-flex justify-content-between mx-3">
-                        <h3>RM&nbsp;<?= $card['price']?></h3>
-                        <button class="btn btn-primary" onclick="javascript:location.href='../book/index.php?room=<?= $card['roomID']?>'">Book Now</button>
-                    </div>
-                </div>
-            </div>
-
-          <?php   
-            }
-          }
-        ?>
-
-        </div>
-    </div>
-
-    <!-- Pagination -->
-        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-          <ul class="pagination">
-            <?php if($activepage>1) : ?>
-            <li class="page-item">
-              <a class="page-link" href="?page=<?= $activepage-1?>">Previous</a>
-            </li>
-            <?php else : ?>
-            <li class="page-item disabled">
-              <a class="page-link" href="#">Previous</a>
-            </li>
-            <?php endif; ?>
-
-          <?php for($i=1; $i <= $totalpage; $i++) : ?>
-            <?php if($i == $activepage) : ?>
-              <li class="page-item active" aria-current="page">
-                <span class="page-link"><?= $i?></span>
-              </li>
-
-            <?php else : ?>
-              <li class="page-item"><a class="page-link" href="?page=<?= $i?>"><?= $i?></a></li>
-
-            <?php endif; ?>
-          <?php endfor; ?>
-
-          <?php if($activepage==$totalpage) : ?>
-            <li class="page-item disabled">
-              <a class="page-link" href="#">Next</a>
-            </li>
-
-          <?php else : ?>
-            <li class="page-item">
-              <a class="page-link" href="?page=<?= $activepage+1?>">Next</a>
-            </li>
-          <?php endif; ?>
-          </ul>
-        </nav>
-    </section>
-
-
+    
     <!-- Footer -->
     <?php
       include "../../template/footer.php"
     ?>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="calculatetotal.js"></script>
   </body>
 </html>
