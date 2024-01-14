@@ -42,7 +42,7 @@ mysqli_close($conn);
 <div style="padding:0 10px;" id="newsDiv">
         <h3 align="center">Edit News</h3>
         <p align="center">Required fields marked with *</p>
-        <form method="POST" action="news-edit-action.php" id="myForm">
+        <form method="POST" action="edit-news-action.php" id="myForm">
             <!-- hidden value: id to be submitted to action page -->
             <input type="text" id="nid" name="nid" value="<?= $_GET['id'] ?>" hidden>
             <table border="1" id="myTable">
