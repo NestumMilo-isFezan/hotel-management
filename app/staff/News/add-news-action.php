@@ -17,7 +17,7 @@ $remark = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 //values for add or edit
-$hotelID = $_SESSION["hotelID"];
+$hotelID = 1;
 $newstitle = $_POST["newstitle"];
 $article = $_POST["article"];
 $descriptiom = trim($_POST["descriptiom"]);

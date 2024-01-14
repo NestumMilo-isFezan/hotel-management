@@ -11,8 +11,6 @@ if (isset($_GET["id"]) && $_GET["id"] != "") {
     $sql_delete = "DELETE FROM news WHERE newsID=" . $id;
     if (mysqli_query($conn, $sql_delete)) {
         echo "Record deleted successfully<br>";
-
-
         echo '<a href="index.php">Back</a>';
     } else {
         echo "Error deleting record: " . mysqli_error($conn) . "<br>";

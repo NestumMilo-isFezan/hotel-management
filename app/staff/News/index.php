@@ -22,7 +22,7 @@ include("../../config/config.php");
             <th width="10%">Action</th>
         </tr>
         <?php
-$sql = "SELECT * FROM news WHERE hotelID=" . $_SESSION["hotelID"];
+$sql = "SELECT * FROM news WHERE hotelID = 1";
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
