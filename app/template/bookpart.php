@@ -1,12 +1,17 @@
 <?php 
+// Require Once
+include('../../directory.php');
+
 // Prepare To Fetch Data
 session_start();
 $hotelID = $_SESSION['hotelID'];
-$uploadpath = "../../upload/";
-include "../../config/config.php";
+include (CONFIG_DIR."/config.php");
 
-if(!isset($_SESSION['userID'])){
+if(!isset($_SESSION['guestID'])){
     header('loation');
+}
+else{
+    $guestID = $_SESSION['guestID'];
 }
 
 if(!isset($_GET['room'])){
@@ -17,12 +22,12 @@ else{
 }
 // Fetch hotel and Room Data
 $hoteldata = fetchOne("SELECT * FROM hotel WHERE hotelID=$hotelID");
-$hotelicon = $uploadpath."home/home_icon.png";
+$hotelicon = UPLOAD_DIR. "/home/home_icon.png";
 if($hoteldata!=null){
     $hotelname = $hoteldata['hotelname'];
     $info = $hoteldata['info'];
     $about= $hoteldata['about'];
-    $hotelimg = "../../upload/home/".$hoteldata['img_path'];
+    $hotelimg = UPLOAD_DIR."/home/".$hoteldata['img_path'];
 
     $contact = $hoteldata['contact'];
     $email = $hoteldata['email'];
@@ -46,10 +51,13 @@ if($hoteldata!=null){
     $roomprice = $roomdata['price'];
     $capacity = $roomdata['capacity'];
 
-    $roomimg = $uploadpath . "roomtype/" . $roomdata['room_imgpath'];
+    $roomimg = UPPATH_DIR . "/roomtype/" . $roomdata['room_imgpath'];
 
     if(!file_exists($roomimg) || $roomdata['room_imgpath']=="") { 
-        $roomimg = $uploadpath . "roomtype/default.jpg";
+        $roomimg = UPLOAD_DIR . "/roomtype/default.jpg";
+    }
+    else{
+        $roomimg = UPLOAD_DIR ."/roomtype/" . $roomdata['room_imgpath'];
     }
 
 }

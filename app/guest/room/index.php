@@ -1,5 +1,6 @@
 <?
-    require "../template/roompart.php";
+  include('../../directory.php');
+  require (TEMP_DIR.'/roompart.php');
 ?>
 
 <!doctype html>
@@ -18,7 +19,7 @@
   <body data-bs-theme="dark">
     <!-- Navbar -->
     <?php 
-      require "../template/navlogic.php";
+      require (TEMP_DIR."/navlogic1.php");
     ?>
     <!-- End Navbar -->
 
@@ -55,10 +56,13 @@
         <?php
         if($roomdata){
           foreach ($roomdata as $card){
-            $roomimg = $uploadpath . "roomtype/" . $card['room_imgpath'];
+            $roomimg = UPPATH_DIR . "/roomtype/" . $card['room_imgpath'];
 
             if(!file_exists($roomimg) || $card['room_imgpath']=="") { 
-              $roomimg = $uploadpath . "roomtype/default.jpg";
+              $roomimg = UPLOAD_DIR . "/roomtype/default.jpg";
+            }
+            else{
+              $roomimg = UPLOAD_DIR . "/roomtype/" . $card['room_imgpath'];
             }
         ?>
             <div class="col">
@@ -126,7 +130,7 @@
 
     <!-- Footer -->
     <?php
-      include "../../template/footer.php"
+      include (TEMP_DIR."/footer.php")
     ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

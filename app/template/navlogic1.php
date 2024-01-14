@@ -1,5 +1,4 @@
 <?php 
-$uplaodpath = '../../upload/user/';
 $img_path = "";
 // Check if userID is set in the session
 if(isset($_SESSION['userID'])){
@@ -13,17 +12,18 @@ if(isset($_SESSION['userID'])){
 
         // Assign Guest Data
         $guestID = $guestdata['guestID'];
+        $_SESSION['guestID'] = $guestID;
         $firstName = $guestdata['firstName'];
         $img = $guestdata['img_path'];
         if($img == null){
-            $img_path = "../../img/user_icon.png";
+            $img_path = ICON_DIR."/user_icon.png";
         }
         else{
-            $img_path = $uploadpath . $img;
+            $img_path = UPLOAD_DIR . '/user/' .$img;
         }
 
         // Include the guest navbar
-        include "../../template/loggedbar.php";
+        include (TEMP_DIR."/loggedbar.php");
      
     }
 }

@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //values for add or edit
     $name = $_POST["name"];
     $description = $_POST["description"];
-    $price = trim($_POST["price"]);
+    $price = $_POST["price"];
     $capacity = ($_POST["capacity"]);
     
     
