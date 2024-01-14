@@ -33,7 +33,7 @@ if (mysqli_num_rows($result) > 0) {
             "</td><td>" . $row["remark"] . "</td>";
 
         // Add the edit and delete links here
-        echo '<td><a href="news-edit.php?id=' . $row["newsID"] . '">Edit</a>&nbsp;|&nbsp;';
+        echo '<td><a href="edit-news.php?id=' . $row["newsID"] . '">Edit</a>&nbsp;|&nbsp;';
         echo '<a href="news-delete.php?id=' . $row["newsID"] . '" onClick="return confirm(\'Delete?\');">Delete</a></td>';
 
         echo "</tr>" . "\n\t\t";
