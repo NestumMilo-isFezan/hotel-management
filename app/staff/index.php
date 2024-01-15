@@ -73,19 +73,19 @@ require (TEMP_DIR."/adminpart.php");
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="../book/index.php" class="nav-link text-white">
+                        <a href="book/index.php" class="nav-link text-white">
                         <i class='bx bxs-book-bookmark me-sm-2 fs-4' ></i>
                         <span class="d-inline-block">Manage Booking</span>
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="../checkin/index.php" class="nav-link text-white">
+                        <a href="checkin/index.php" class="nav-link text-white">
                         <i class='bx bx-list-check me-sm-2 fs-4' ></i>
                         <span class="d-inline-block">Manage Check In</span>
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="../checkout/index.php" class="nav-link text-white">
+                        <a href="checkout/index.php" class="nav-link text-white">
                         <i class='bx bx-list-minus me-sm-2 fs-4' ></i>
                         <span class="d-inline-block">Manage Check Out</span>
                         </a>

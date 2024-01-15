@@ -123,7 +123,7 @@ require (TEMP_DIR."/adminpart.php");
                 </div>
 
                 <div class = "mx-3">
-                    <table class = "table" width="100%">
+                    <table class = "table table-hover" width="100%">
                         <tr class="" style="--bs-table-bg: #cf8e40;">
                             <th scope="column" width="5%">No</th>
                             <th scope="column" width="35%">Guest Name</th>
