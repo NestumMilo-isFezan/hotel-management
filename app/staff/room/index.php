@@ -18,18 +18,18 @@ include("../../config/config.php");
     </div>
 
     <div>
-        <table border="1">
+        <table border="1" width = "80%">
             <tr>
-                <th width="20%">RoomID</th>
-                <th width="20%">HotelID</th>
-                <th width="20%">TypeID</th>
+                <th width="10%">No</th> 
+                <th width="25%">Room No.</th>
+                <th width="25%">Room Type</th>
                 <th width="20%">Room Status</th>
-                <th width="15%">Room No</th>
-                <th width="10%">Action</th>
+                <th width="20%">Action</th>
             </tr>
 
             <?php
-                $sql = "SELECT room.*, roomtype.* FROM room LEFT JOIN roomtype ON room.typeID = roomtype.typeID";
+                $sql = "SELECT room.*, roomtype.* FROM room
+                JOIN roomtype ON room.typeID = roomtype.typeID"; 
 
                 $result = mysqli_query($conn, $sql);
 
@@ -43,8 +43,7 @@ include("../../config/config.php");
                     $numrow=1;
                     while($row = mysqli_fetch_assoc($result)) {
                         echo "<tr>";
-                        echo "<td>" . $numrow . "</td><td>". $row["hotelID"] . " " . $row["typeID"]. "</td><td>" . $row["roomstatus"] .
-                            "</td><td>" . $row["roomNo"] ."</td>";
+                        echo "<td>" . $numrow . "</td><td>". $row["roomNo"] . " </td><td> " . $row["name"]. "</td><td>" . $row["roomstatus"] . "</td>";
                         echo '<td> <a href="room_edit.php?id=' . $row["roomID"] . '">Edit</a>&nbsp;|&nbsp;';
                         echo '<a href="room_delete.php?id=' . $row["roomID"] . '" onClick="return confirm(\'Delete?\');">Delete</a> </td>';
                         echo "</tr>" . "\n\t\t";

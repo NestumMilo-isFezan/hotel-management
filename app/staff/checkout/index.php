@@ -58,8 +58,8 @@ require (TEMP_DIR."/adminpart.php");
                                 <div class="accordion-body">
                                     <div class="container-fluid w-100 h-100">
                                         <ul class="btn-toggle-nav list-unstyled fw-normal list-group">
-                                            <li class="list-group-item"><a href="#" class="link-body-emphasis text-decoration-none rounded mb-sm-3"><i class='bx bxs-plus-square me-sm-2 fs-4' ></i><span class="d-inline-block">Hotel Room</span></a></li>
-                                            <li class="list-group-item"><a href="#" class="link-body-emphasis text-decoration-none rounded mb-sm-1"><i class='bx bxs-layer-plus me-sm-2 fs-4'></i><span class="d-inline-block">Room Type</span></a></li>
+                                            <li class="list-group-item"><a href="../romm/index.php" class="link-body-emphasis text-decoration-none rounded mb-sm-3"><i class='bx bxs-plus-square me-sm-2 fs-4' ></i><span class="d-inline-block">Hotel Room</span></a></li>
+                                            <li class="list-group-item"><a href="../room-type/index.php" class="link-body-emphasis text-decoration-none rounded mb-sm-1"><i class='bx bxs-layer-plus me-sm-2 fs-4'></i><span class="d-inline-block">Room Type</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@ require (TEMP_DIR."/adminpart.php");
                         </div>
                     </li>
                     <li class="list-group-item">
-                        <a href="#" class="nav-link text-white">
+                        <a href="../service/index.php" class="nav-link text-white">
                         <i class='bx bxs-cog me-sm-2 fs-4' ></i>
                         <span class="d-inline-block">Manage Service</span>
                         </a>
@@ -144,48 +144,57 @@ require (TEMP_DIR."/adminpart.php");
                             <div>
                                 <div class = "table header mt-3">
                                     <h2>Ready To Check-Out List</h2>
+                                    <hr>
                                 </div>
                                 <div class = "table-content">
-
-                                    <table class = "table" width="100%">
-                                        <tr class="" style="--bs-table-bg: #cf8e40;">
+                                    <table class = "table table-hover table-bordered table-emphasis-color">
+                                        <tr class="" style="--bs-table-bg:#cf8e40;">
                                             <th scope="column" width="5%">No</th>
                                             <th scope="column" width="35%">Guest Name</th>
                                             <th scope="column" width="15%">Room No.</th>
                                             <th scope="column" width="15">Check In Date</th>
                                             <th scope="column" width="15%">Check Out Date</th>
-                                            <th scope="column" width="15%">Action</th>
+                                            <th scope="column" width="15%">Modify</th>
                                         </tr>
-                                    <tbody class = "table-danger table-striped">
-                                        <?php
-                                        $sql = "SELECT booking.*, room.*, guest.* FROM booking
-                                        JOIN room ON booking.roomID = room.roomID
-                                        JOIN guest ON booking.guestID = guest.guestID
-                                        WHERE booking.status = 'checkin'";
+                                        <tbody class="table-danger">
 
-                                        $result = mysqli_query($conn, $sql);
+                                            <?php
+                                            $sql = "SELECT booking.*, room.*, guest.* FROM booking
+                                            JOIN room ON booking.roomID = room.roomID
+                                            JOIN guest ON booking.guestID = guest.guestID
+                                            WHERE booking.status = 'checkin'";
+                                            $result = mysqli_query($conn, $sql);
 
-                                        if (!$result) {
-                                            die('Query failed: ' . mysqli_error($conn));
-                                        }
+                                            if (mysqli_num_rows($result) > 0) {
+                                                // output data of each row
+                                                $numrow=0;
+                                                while($row = mysqli_fetch_assoc($result))
+                                                {
+                                                    $numrow++;
+                                            ?>
+                                            <tr>
+                                            <td><?=$numrow?></td>
+                                            <td><?= $row["firstName"]?> <?= $row["lastName"]?></td>
+                                            <td><?= $row["roomNo"]?></td>
+                                            <td><?= $row["check_in"]?></td>
+                                            <td><?= $row["check_out"]?></td>
 
-                                        if (mysqli_num_rows($result) > 0) {
-                                            // output data of each row
-                                            $numrow = 1;
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                echo "<tr>";
-                                                echo "<td>" . $numrow . "</td><td>" . $row["firstName"] . " " . $row["lastName"] . "</td><td>" . $row["roomID"] . "</td><td>" . $row["check_in"] .
-                                                    "</td><td>" . $row["check_out"] . "</td>";
-                                                echo '<td> <a href="checkout.php?book=' . $row["bookID"] . '">Check-Out</a> </td>';
-                                                echo "</tr>" . "\n\t\t";
-                                                $numrow++;
+                                            <td>
+                                            <div class="d-grid gap-2 d-block">
+                                            <button type="button" class="btn btn-warning">Check-Out</button>
+                                            </div>
+                                            </td>
+                                            </tr>
+                                                
+                                            <?php
+                                                
                                             }
-                                        } 
-                                        else {
-                                            echo '<tr><td colspan="7">No results ! :(</td></tr>';
-                                        }
+                                            }
+                                            else {
+                                                echo '<tr><td colspan="7">🕵️‍♂️ No customers ready to checkout ! 😕 </td></tr>';
+                                            }
                                         ?>
-                                    </tbody>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -198,10 +207,11 @@ require (TEMP_DIR."/adminpart.php");
                             <div>
                                 <div class = "table header mt-3">
                                     <h2>Checked Out Guest List</h2>
+                                    <hr>
                                 </div>
                                 <div class = "table content">
-                                    <table class = "table" width="100%">
-                                        <tr class="" style="--bs-table-bg: #40cf45;">
+                                    <table class = "table table-hover table-bordered table-emphasis-color">
+                                        <tr class="" style="--bs-table-bg: #cf8e40;">
                                             <th width="5%">No</th>
                                             <th width="35%">Guest Name</th>
                                             <th width="15%">Room No.</th>
@@ -209,36 +219,43 @@ require (TEMP_DIR."/adminpart.php");
                                             <th width="15%">Check Out Date</th>
                                             <th width="15%">Action</th>
                                         </tr>
-                                        <tbody class="table-success">
-                                        <?php
-                                        $sql = "SELECT booking.*, room.*, guest.* FROM booking
-                                        JOIN room ON booking.roomID = room.roomID
-                                        JOIN guest ON booking.guestID = guest.guestID
-                                        WHERE booking.status = 'checkout'";
+                                        <tbody class="table-danger">
 
-                                        $result = mysqli_query($conn, $sql);
+                                            <?php
+                                            $sql = "SELECT booking.*, room.*, guest.* FROM booking
+                                            JOIN room ON booking.roomID = room.roomID
+                                            JOIN guest ON booking.guestID = guest.guestID
+                                            WHERE booking.status = 'checkout'";
+                                            $result = mysqli_query($conn, $sql);
 
-                                        if (!$result) {
-                                            die('Query failed: ' . mysqli_error($conn));
-                                        }
+                                            if (mysqli_num_rows($result) > 0) {
+                                                // output data of each row
+                                                $numrow=0;
+                                                while($row = mysqli_fetch_assoc($result))
+                                                {
+                                                    $numrow++;
+                                            ?>
+                                            <tr>
+                                            <td><?=$numrow?></td>
+                                            <td><?= $row["firstName"]?> <?= $row["lastName"]?></td>
+                                            <td><?= $row["roomNo"]?></td>
+                                            <td><?= $row["check_in"]?></td>
+                                            <td><?= $row["check_out"]?></td>
 
-                                        if (mysqli_num_rows($result) > 0) {
-                                            // output data of each row
-                                            $numrow = 1;
-                                            $updated_status = 'checked-out';
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                echo "<tr>";
-                                                echo "<td>" . $numrow . "</td><td>" . $row["firstName"] . " " . $row["lastName"] . "</td><td>" . $row["roomNo"] . "</td><td>" . $row["check_in"] .
-                                                    "</td><td>" . $row["check_out"] . "</td>";
-                                                echo '<td> <a href="delete.php?book=' . $row["bookID"] . '">Delete</a> </td>';
-                                                echo "</tr>" . "\n\t\t";
-                                                $numrow++;
+                                            <td>
+                                            <div class="d-grid gap-2 d-block">
+                                            <button type="button" class="btn btn-danger">Delete</button>
+                                            </div>
+                                            </td>
+                                            </tr>
+                                                
+                                            <?php
+                                                
                                             }
-                                        } 
-                                        else {
-                                            echo '<tr><td colspan="7">No results ! :(</td></tr>';
-                                        }
-                                        mysqli_close($conn);
+                                            }
+                                            else {
+                                                echo '<tr><td colspan="7">🕵️‍♂️ No customers checked out from the Hotel ! 😕 </td></tr>';
+                                            }
                                         ?>
                                         </tbody>
                                     </table>

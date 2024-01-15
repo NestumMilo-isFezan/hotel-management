@@ -8,7 +8,7 @@ require (TEMP_DIR."/adminpart.php");
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Manage Check-In</title>
+        <title>Manage Service</title>
         <link href="" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Staatliches" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
@@ -57,8 +57,8 @@ require (TEMP_DIR."/adminpart.php");
                                 <div class="accordion-body">
                                     <div class="container-fluid w-100 h-100">
                                         <ul class="btn-toggle-nav list-unstyled fw-normal list-group">
-                                            <li class="list-group-item"><a href="#" class="link-body-emphasis text-decoration-none rounded mb-sm-3"><i class='bx bxs-plus-square me-sm-2 fs-4' ></i><span class="d-inline-block">Hotel Room</span></a></li>
-                                            <li class="list-group-item"><a href="#" class="link-body-emphasis text-decoration-none rounded mb-sm-1"><i class='bx bxs-layer-plus me-sm-2 fs-4'></i><span class="d-inline-block">Room Type</span></a></li>
+                                            <li class="list-group-item"><a href="../room/index.php" class="link-body-emphasis text-decoration-none rounded mb-sm-3"><i class='bx bxs-plus-square me-sm-2 fs-4' ></i><span class="d-inline-block">Hotel Room</span></a></li>
+                                            <li class="list-group-item"><a href="../room-type/index.php" class="link-body-emphasis text-decoration-none rounded mb-sm-1"><i class='bx bxs-layer-plus me-sm-2 fs-4'></i><span class="d-inline-block">Room Type</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -66,8 +66,8 @@ require (TEMP_DIR."/adminpart.php");
                             </div>
                         </div>
                     </li>
-                    <li class="list-group-item">
-                        <a href="#" class="nav-link text-white">
+                    <li class="list-group-item active">
+                        <a href="../service/index.php" class="nav-link text-white">
                         <i class='bx bxs-cog me-sm-2 fs-4' ></i>
                         <span class="d-inline-block">Manage Service</span>
                         </a>
@@ -78,7 +78,7 @@ require (TEMP_DIR."/adminpart.php");
                         <span class="d-inline-block">Manage Booking</span>
                         </a>
                     </li>
-                    <li class="list-group-item active">
+                    <li class="list-group-item">
                         <a href="../checkin/index.php" class="nav-link text-white">
                         <i class='bx bx-list-check me-sm-2 fs-4' ></i>
                         <span class="d-inline-block">Manage Check In</span>
