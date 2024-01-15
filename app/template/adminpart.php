@@ -5,14 +5,10 @@ $hotelID = $_SESSION['hotelID'];
 include (CONFIG_DIR."/config.php");
 
 
-$_SESSION['userID']=1;
-$_SESSION['userRoles']=1;
-
-if(isset($_SESSION['userID'], $_SESSION['userRoles'])){
-    if($_SESSION['userRoles'] == 1){
+if(isset($_SESSION['staffID'])){
         // Fetch Staff Data
-        $userID = $_SESSION['userID'];
-        $staffdata = fetchOne("SELECT * FROM staff WHERE accID=$userID");
+        $userID = $_SESSION['staffID'];
+        $staffdata = fetchOne("SELECT * FROM staff WHERE staffID=$userID");
         $userIcon = ICON_DIR."/user_icon.png";
         
         $staffID = $staffdata['staffID'];
@@ -39,11 +35,9 @@ if(isset($_SESSION['userID'], $_SESSION['userRoles'])){
         $statename = $hoteldata['state'];
         $countryname = $hoteldata['country'];
         $fulladdress = "$address, "."$city, "."$postcode, "."$statename, "."$countryname ";
-    
-    }
-    else{
-        header('Location: ../index.php');
-    }
 
+}
+else{
+    header('Location: ../index.php');
 }
 ?>

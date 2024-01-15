@@ -27,10 +27,10 @@
             <a class="nav-link" href="<?= $contactdir?>">Contact</a>
             </li>
             <li class="nav-item d-grid pb-2 px-1">
-            <button class="btn btn-outline-success" type="button">Log In</button>
+            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#loginmodal">Log In</button>
             </li>
             <li class="nav-item d-grid pb-2 px-1">
-            <button class="btn btn-outline-secondary" type="button">Sign Up</button>
+            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#registermodal">Sign Up</button>
             </li>
         </ul>
         </div>

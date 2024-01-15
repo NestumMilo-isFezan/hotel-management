@@ -1,5 +1,10 @@
 <?php 
-require "template/homepart.php";
+require "directory.php";
+require (TEMP_DIR."/homepart.php");
+
+if(isset($_SESSION['staffID'])){
+  header("Refresh:0; url=staff/index.php");
+}
 ?>
 
 <!doctype html>
@@ -18,7 +23,7 @@ require "template/homepart.php";
   <body data-bs-theme="dark">
     <!-- Navbar -->
     <?php 
-      require "./template/navlogic.php";
+      require TEMP_DIR."/navlogic.php";
     ?>
     <!-- End Navbar -->
 
@@ -98,7 +103,129 @@ require "template/homepart.php";
       include "./template/footer.php"
     ?>
 
+    <!-- Modal -->
+    <div class="modal fade" id="loginmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <form autocomplete="off" class="modal-content" method="post" id="loginform">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Log-In</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="w-100">
+                        <div class="mb-1">
+                            <label for="email" class="col-form-label">Email :</label>
+                            <div class="input-group">
+                                <span class="input-group-text" style="width:40px;"><i class='bx bxs-envelope' ></i></span>
+                                <input type="email" class="form-control" id="loginemail" name="email" placeholder="Your Email" require>
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <label for="passw" class="col-form-label">Password :</label>
+                            <div class="input-group">
+                                <span class="input-group-text" style="width:40px;"><i class='bx bxs-key' ></i></span>
+                                <input type="password" class="form-control" id="loginpass" name="password" placeholder="Your Password" require>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" name="submit" id="loginnow" data-bs-dismiss="modal">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Modal -->
+    <div class="modal fade" id="registermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <form autocomplete="off" class="modal-content" method="post" id="registerform">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Register</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="w-100">
+                      <div class="mb-1">
+                            <label for="name" class="col-form-label">Username :</label>
+                            <div class="input-group">
+                                <span class="input-group-text" style="width:40px;"><i class='bx bxs-user-circle' ></i></span>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Your Username">
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <label for="email" class="col-form-label">Email :</label>
+                            <div class="input-group">
+                                <span class="input-group-text" style="width:40px;"><i class='bx bxs-envelope' ></i></span>
+                                <input type="email" class="form-control" id="registeremail" name="registeremail" placeholder="Your Email">
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <label for="password" class="col-form-label">Password :</label>
+                            <div class="input-group">
+                                <span class="input-group-text" style="width:40px;"><i class='bx bxs-key' ></i></span>
+                                <input type="password" class="form-control" id="regpassword" name="password" placeholder="Enter Password">
+                            </div>
+                        </div>
+                        <div class="mb-1">
+                            <label for="confirmpass" class="col-form-label">Confirm Password :</label>
+                            <div class="input-group">
+                                <span class="input-group-text" style="width:40px;"><i class='bx bxs-key' ></i></span>
+                                <input type="password" class="form-control" id="confirmpass" name="confirmpass" placeholder="Re-Enter Password">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" name="submit" id="registernow" data-bs-dismiss="modal">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="guestToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+        <img src="<?= $hotelicon?>" class="rounded me-2" alt="..." style="width:15px; height:15px;">
+        <strong class="me-auto">System</strong>
+        <small>A changes made...</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+        Hi Guest-san, Let's explore the page in 5 seconds...
+        </div>
+    </div>
+
+    <div id="staffToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+        <img src="<?= $hotelicon?>" class="rounded me-2" alt="..." style="width:15px; height:15px;">
+        <strong class="me-auto">System</strong>
+        <small>A changes made...</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+        Hello Staff-san, You will be redirected to staff page. <br>Maybe in 5 seconds...
+        </div>
+    </div>
+
+    <div id="addToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+        <img src="<?= $hotelicon?>" class="rounded me-2" alt="..." style="width:15px; height:15px;">
+        <strong class="me-auto">System</strong>
+        <small>A changes made...</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+        Successfully Register.<br>Please Login.
+        </div>
+    </div>
+
+</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="./auth/authentication.js"></script>
   </body>
 </html>

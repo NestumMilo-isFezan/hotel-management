@@ -1,6 +1,7 @@
 <?php
 require("../../directory.php");
 require (TEMP_DIR."/adminpart.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -129,14 +130,14 @@ require (TEMP_DIR."/adminpart.php");
                     <h2>Manage Services</h2>
                 </div>
                 <div class="">
-                    <button type="button" class="btn btn-primary mt-sm-2 btn-sm" data-bs-toggle="modal" data-bs-target="#addform">
+                    <button type="button" id="addit" class="btn btn-primary mt-sm-2 btn-sm" data-bs-toggle="modal" data-bs-target="#formmodal">
                         Add Services
                     </button>
                 </div>
             </div>
         </div>
 
-        <div class = "mx-1 overflow-x-auto">
+        <div id="tablecontent" class = "mx-1 overflow-x-auto">
             <table class = "table table-hover table-bordered border-danger">
                 <tr class="" style="--bs-table-bg:#bd3e75;">
                     <th width="5%">No</th>
@@ -174,8 +175,8 @@ require (TEMP_DIR."/adminpart.php");
 
                     <td>
                         <div class="d-grid gap-2 d-block">
-                        <button type="button" class="btn btn-primary btn-sm update" data-bs-toggle="modal" data-bs-target="#addform" data-id="<?= $row['serviceID']?>">Edit</button>
-                        <button type="button" class="btn btn-danger btn-sm update" data-id="<?= $row['serviceID']?>">Delete</button>
+                        <button type="button" class="btn btn-primary btn-sm update" id="editit" data-bs-toggle="modal" data-bs-target="#formmodal" data-id="<?= $row['serviceID']?>">Edit</button>
+                        <button type="button" class="btn btn-danger btn-sm update" id="deleteit" data-id="<?= $row['serviceID']?>">Delete</button>
                         </div>
                     </td>
                     </tr>
@@ -198,7 +199,7 @@ require (TEMP_DIR."/adminpart.php");
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="addform" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="formmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <form class="modal-content" method="post" id="addform">
                 <div class="modal-header">
@@ -214,7 +215,7 @@ require (TEMP_DIR."/adminpart.php");
                         <div clas="mb-3">
                             <label for="status" class="col-form-label">Service Availability :</label>
                             <select class="form-select" aria-label="service status" name="status" id="status">
-                                <option selected>Select service status</option>
+                                <option value="select" selected>Select service status</option>
                                 <option value="available">Available</option>
                                 <option value="unavailable">Unavailable</option>
                             </select>
@@ -237,7 +238,7 @@ require (TEMP_DIR."/adminpart.php");
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" name="submit" id="submit">Submit</button>
+                    <button type="submit" class="btn btn-primary" name="submit" id="submit" data-bs-dismiss="modal">Submit</button>
                 </div>
             </form>
         </div>
@@ -246,6 +247,46 @@ require (TEMP_DIR."/adminpart.php");
 
 </div>
 </div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="editToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+        <img src="<?= $hotelicon?>" class="rounded me-2" alt="..." style="width:15px; height:15px;">
+        <strong class="me-auto">System</strong>
+        <small>A changes made...</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+        Successfully Edit Hotel Service
+        </div>
+    </div>
+
+    <div id="deleteToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+        <img src="<?= $hotelicon?>" class="rounded me-2" alt="..." style="width:15px; height:15px;">
+        <strong class="me-auto">System</strong>
+        <small>A changes made...</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+        Successfully Delete Hotel Service
+        </div>
+    </div>
+
+    <div id="addToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+        <img src="<?= $hotelicon?>" class="rounded me-2" alt="..." style="width:15px; height:15px;">
+        <strong class="me-auto">System</strong>
+        <small>A changes made...</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+        Successfully Add Hotel Service
+        </div>
+    </div>
+
+</div>
+
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

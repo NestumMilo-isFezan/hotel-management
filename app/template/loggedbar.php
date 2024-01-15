@@ -37,7 +37,7 @@
                     <li><a class="dropdown-item" href="#"><i class='bx bxs-user-account me-sm-2' ></i></i><span class="ms-1">Edit Profile</span></a></li>
                     <li><a class="dropdown-item" href="#"><i class='bx bxs-bed me-sm-2'></i></i><span class="ms-1">Manage Booking</span></a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#"><i class='bx bxs-log-out me-sm-2' ></i><span class="ms-1">Sign out</span></a></li>
+                    <li><a class="dropdown-item" href="auth/logout.php"><i class='bx bxs-log-out me-sm-2' ></i><span class="ms-1">Sign out</span></a></li>
                 </ul>
             </div>
         </div>

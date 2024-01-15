@@ -2,11 +2,8 @@
 // Prepare To Fetch Data
 session_start();
 $_SESSION['hotelID'] = 1;
-$_SESSION['userID']= 2;
-$_SESSION['userRoles']= 2;
 $hotelID = $_SESSION['hotelID'];
 include "config/config.php";
-$navbartag = 0;
 
 // Fetch Data
 $hoteldata = fetchOne("SELECT * FROM hotel WHERE hotelID=$hotelID");
