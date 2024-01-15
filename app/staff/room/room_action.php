@@ -5,19 +5,19 @@ include('../../config/config.php');
 //variables
 $action="";
 $id="";
-$roomstatus = "";
 $roomNo = "";
-
+$roomstatus = "";
+$roomtype = "";
 
 //this block is called when button Submit is clicked
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //values for add or edit
-    $roomstatus = $_POST["roomstatus"];
     $roomNo = $_POST["roomNo"];
-
+    $roomtype = $_POST["roomtype"];
+    $roomstatus = $_POST["roomstatus"];
     
-        $sql = "INSERT INTO room (hotelID, roomstatus, roomNo)
-        VALUES (" . $_SESSION["hotelID"] . ", '" . $roonstatus . "', '". $roomNo . "')";
+        $sql = "INSERT INTO room (hotelID, typeID, roomstatus, roomNo)
+        VALUES (" . $_SESSION["hotelID"] . ",'" . $roomtype . "', '" . $roomstatus . "', '". $roomNo . "')";
         
         $status = insertTo_DBTable($conn, $sql);
 
