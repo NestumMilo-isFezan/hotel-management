@@ -1,32 +1,13 @@
 <?php
-// if(isset($_SESSION['userID'], $_SESSION['userRoles'])){
-//     if($_SESSION['userRoles'] == 2){
-//         // Fetch Guest Data
-//         $userID = $_SESSION['userID'];
-//         $guestdata = fetchOne("SELECT * FROM guest WHERE accID=$userID");
-
-//         // Assign Guest Data
-//         $guestID = $guestdata['guestID'];
-//         $firstName = $guestdata['firstName'];
-//         $img_path = $guestdata['img_path'];
-
-//         include "navbar.php";
-//     }
-//     else{
-//         header("location:./staff/index.php");
-//     }
-// }
-// else{
-//     include "loggedbar.php";
-// }
+require "directory.php";
 $uplaodpath = './upload/user/';
 $img_path = "";
 // Check if userID is set in the session
-if(isset($_SESSION['userID'])){
+if($_SESSION['user'] == 1){
     // If userID is set, the user is logged in
 
     // Check if userRoles is set and if the user is a guest (assuming 2 represents a guest role)
-    if(isset($_SESSION['userRoles']) && $_SESSION['userRoles'] == 2){
+    if(isset($_SESSION['guestID'])){
         // Fetch Guest Data
         $userID = $_SESSION['userID'];
         $guestdata = fetchOne("SELECT * FROM guest WHERE accID=$userID");
@@ -43,16 +24,12 @@ if(isset($_SESSION['userID'])){
         }
         
         // Include the guest navbar
-        include "./template/loggedbar.php";
+        include (TEMP_DIR."/loggedbar.php"); 
+    } 
 
-        
-    } else {
-        // Include a default navbar for other logged-in users (staff or other roles)
-        
-    }
 }
 else {
     // Include a default navbar for users who are not logged in
-    include "./template/navbar.php";
+    include TEMP_DIR. "/navbar.php";
 }
 ?>

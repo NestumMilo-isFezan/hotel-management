@@ -13,7 +13,7 @@ include(CONFIG_DIR."/config.php");
         $totalprice = $_POST['totalprice'];
 
         $sql = "INSERT INTO booking(roomID, guestID, serviceID, check_in, check_out, total_price, status)
-        VALUES($roomID, $guestID, $services, '$checkin', '$checkout', $totalprice, 'available')";
+        VALUES($roomID, $guestID, $services, '$checkin', '$checkout', $totalprice, 'pending')";
 
         mysqli_query($conn, $sql);
 
