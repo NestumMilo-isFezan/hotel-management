@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $roomNo = $_POST["roomNo"];
 
     
-        $sql = "INSERT INTO room (roomID, roomstatus, roomNo)
+        $sql = "INSERT INTO room (hotelID, roomstatus, roomNo)
         VALUES (" . $_SESSION["hotelID"] . ", '" . $roonstatus . "', '". $roomNo . "')";
         
         $status = insertTo_DBTable($conn, $sql);
