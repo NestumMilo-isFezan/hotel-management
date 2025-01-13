@@ -1,80 +1,38 @@
-<?php
-session_start();
-include("../../config/config.php");
-?>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Payment</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refactored Code</title>
 </head>
-
 <body>
-    <div class = "content">
-        <div class = "col-1">
-            <div class = "table-title">
-                <h2>Payment</h2>
-            </div>
+    <div id="toast-container"></div>
 
-            <div class="price">
-                <?php
-                if (isset($_GET["id"]) && $_GET["id"] != "") {
-                    $payid = $_GET["id"];
-                    $guest_id = $_SESSION['guestID'];
-
-                    $sql = "SELECT total_price FROM booking WHERE bookID= '$payid' AND guestID= '$guest_id'";
-                    $result = mysqli_query($conn, $sql);
-
-                    if ($result) {
-                        $row = mysqli_fetch_assoc($result);
-                        $total_price = $row["total_price"];
-
-                        if ($total_price !== null) {
-                            echo "<h2>Total Price: RM $total_price</h2>";
-                        } 
-                        else {
-                            echo "<h2>Total Price not available</h2>";
-                        }
-                    } 
-                    else {
-                        echo "<h2>Error fetching total price</h2>";
-                    }
-                } 
-                else {
-                    echo "<h2>No booking ID provided</h2>";
-                }
-                mysqli_close($conn);
-                ?>
-            </div>
-
-            <div class = "table-content">
-                <form method="POST" action="pay.php">
-                    <input type="hidden" name="payid" value="<?php echo $guest_id; ?>">
-                    <input type="hidden" name="total_price" value="<?php echo $total_price; ?>">
-                    <table id="form">
-                        <tr>
-                            <td>Amount Pay:</td>
-                            <td>
-                                <input type="text" name="amountpay" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Method:</td>
-                            <td>
-                                <select name="paymethod" required>
-                                    <option value="">&nbsp;</option>
-                                    <option value="Cash">Cash</option>
-                                    <option value="Credit Card">Credit Card</option>
-                                    <option value="E-Wallet">E-Wallet</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                    <div class = "table-button">
-                        <button type="submit">Pay</button>
+    <!-- Consolidated Script Imports with SRI -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"
+    integrity="sha384-O+rxgys5G6T5/BkN0m91ff1hlU3Ni7VJ4gD4ShZXu/g6L3Ogl5ITknDJz8BGcDkZ"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9KwDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/O0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+    <script src="action.js"></script>
+    <script>
+        // Utility function to dynamically create toast messages
+        function createToast(message) {
+            const toastHTML = `
+                <div class="toast">
+                    <div class="toast-header">
+                        <strong class="mr-auto">Notification</strong>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
+                    <div class="toast-body">${message}</div>
+                </div>
+            `;
+            $('#toast-container').append(toastHTML);
+        }
+
+        // Example usage
+        createToast('Successfully Added Hotel Service');
+    </script>
 </body>
 </html>
